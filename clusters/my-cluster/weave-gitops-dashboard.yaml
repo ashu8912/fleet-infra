@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/created-by: weave-gitops-cli
     app.kubernetes.io/name: weave-gitops-dashboard
     app.kubernetes.io/part-of: weave-gitops
-  name: ww-gitops
+  name: weave
   namespace: flux-system
 spec:
   interval: 1h0m0s
@@ -23,7 +23,7 @@ metadata:
   annotations:
     metadata.weave.works/description: This is the Weave GitOps Dashboard.  It provides
       a simple way to get insights into your GitOps workloads.
-  name: ww-gitops
+  name: weave
   namespace: flux-system
 spec:
   chart:
@@ -31,11 +31,9 @@ spec:
       chart: weave-gitops
       sourceRef:
         kind: HelmRepository
-        name: ww-gitops
+        name: weave
   interval: 1h0m0s
   values:
-    adminUser:
-      create: true
-      passwordHash: $2a$10$B1qzvVqM0D7qmzNC/2Xo1.rtPq6l1f/vmBKJ3luXd5ZOQ/4QaXowq
-      username: admin
+    additionalArgs:
+      - --insecure-no-authentication-user=gitops-test-user
 
